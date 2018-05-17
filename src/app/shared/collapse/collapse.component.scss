@@ -1,0 +1,14 @@
+div {
+    overflow-y: hidden;
+    -moz-transition: height 0.5s;
+    -ms-transition: height 0.5s;
+    -o-transition: height 0.5s;
+    -webkit-transition: height 0.5s;
+    transition: height 0.5s ease;
+}
+
+.collapse-container {
+  padding: 15px;
+  background-color: #F7F7F7;
+  background-image: linear-gradient(transparent 0, rgba(180, 180, 180, 0.6) 100%, #f7f7f7);
+}

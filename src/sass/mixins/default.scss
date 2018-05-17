@@ -1,0 +1,7 @@
+@import '../default.scss';
+
+@mixin disable-button {
+  .disable-button {
+    cursor: not-allowed;
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {GeneralService} from '../../services';
+import { GeneralService } from '../../services';
 
 @Component({
   selector: 'app-users',
@@ -19,47 +19,47 @@ export class UsersComponent implements OnInit {
     this.generalService.fetchUsers().subscribe(
       (users) => {
         this.users = users;
-        this.fillUserObjects(this.users);
+        this.fillUserObjects();
       }, (err) => {
         console.log(err);
       }
     );
   }
 
-  private fillUserObjects(users) {
-    this.fillPosts(users);
+  private fillUserObjects() {
+    this.fillPosts();
   }
 
-  private fillPosts(users) {
+  private fillPosts() {
     this.generalService.getPosts().subscribe(
       (posts) => {
-        users.map(user => {
+        this.users.map(user => {
           user.posts = posts.filter(post => post['userId'] === user['id']);
         });
-        this.fillAlbums(users);
+        this.fillAlbums();
       }, (err) => {
         console.log(err);
       }
     );
   }
 
-  private fillAlbums(users) {
+  private fillAlbums() {
     this.generalService.getAlbums().subscribe(
       (albums) => {
-        users.map(user => {
+        this.users.map(user => {
           user.albums = albums.filter(post => post['userId'] === user['id']);
         });
-        this.fillPhotos(users);
+        this.fillPhotos();
       }, (err) => {
         console.log(err);
       }
     );
   }
 
-  private fillPhotos(users) {
+  private fillPhotos() {
     this.generalService.getPhotos().subscribe(
       (photos) => {
-        users.map(user => {
+        this.users.map(user => {
           user.photos = [];
           user['albums'].map(album => {
             user.photos = [...user.photos, ...photos.filter(photo => photo['albumId'] === album.id)];

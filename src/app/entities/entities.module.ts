@@ -5,7 +5,8 @@ import { EntitiesRoutingModule } from './entities-routing.module';
 
 import {
   NotFoundComponent,
-  UsersComponent
+  UsersComponent,
+  RegisterComponent
 } from './';
 import { SharedModule } from '../shared/shared.module';
 
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   declarations: [
     UsersComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RegisterComponent
   ]
 })
 export class EntitiesModule {

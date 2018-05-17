@@ -19,22 +19,24 @@ export class UsersComponent implements OnInit {
     this.generalService.fetchUsers().subscribe(
       (users) => {
         this.users = users;
-        this.fillPosts(this.users);
-        this.fillAlbums(this.users);
-        this.fillPhotos(this.users);
+        this.fillUserObjects(this.users);
       }, (err) => {
         console.log(err);
       }
     );
   }
 
+  private fillUserObjects(users) {
+    this.fillPosts(users);
+  }
+
   private fillPosts(users) {
     this.generalService.getPosts().subscribe(
       (posts) => {
         users.map(user => {
-          const qtt = posts.filter(post => post['userId'] === user['id']).length;
-          user['quantityPosts'] = posts ? qtt : 0;
+          user.posts = posts.filter(post => post['userId'] === user['id']);
         });
+        this.fillAlbums(users);
       }, (err) => {
         console.log(err);
       }
@@ -45,9 +47,9 @@ export class UsersComponent implements OnInit {
     this.generalService.getAlbums().subscribe(
       (albums) => {
         users.map(user => {
-          const qtt = albums.filter(post => post['userId'] === user['id']).length;
-          user['quantityAlbums'] = albums ? qtt : 0;
+          user.albums = albums.filter(post => post['userId'] === user['id']);
         });
+        this.fillPhotos(users);
       }, (err) => {
         console.log(err);
       }
@@ -58,8 +60,10 @@ export class UsersComponent implements OnInit {
     this.generalService.getPhotos().subscribe(
       (photos) => {
         users.map(user => {
-          const qtt = photos.filter(post => post['userId'] === user['id']).length;
-          user['quantityPhotos'] = photos ? qtt : 0;
+          user.photos = [];
+          user['albums'].map(album => {
+            user.photos = [...user.photos, ...photos.filter(photo => photo['albumId'] === album.id)];
+          });
         });
       }, (err) => {
         console.log(err);

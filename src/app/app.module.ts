@@ -8,6 +8,9 @@ import { SharedModule } from './shared/shared.module';
 import { EntitiesModule } from './entities/entities.module';
 import { DashboardComponent } from './dashboard';
 import { AppRoutingModule } from './app-routing.module';
+import {
+  GeneralService
+} from './services';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { AppRoutingModule } from './app-routing.module';
     EntitiesModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    GeneralService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

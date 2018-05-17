@@ -1,3 +1,27 @@
-<p>
-  users works!
-</p>
+<table>
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>Name</th>
+    <th>E-mail</th>
+    <th>City</th>
+    <th>Ride in group</th>
+    <th>Day of the week</th>
+    <th>Posts</th>
+    <th>Albums</th>
+    <th>Photos</th>
+  </tr>
+  </thead>
+
+  <tr *ngFor="let user of users">
+    <td>{{user['username']}}</td>
+    <td>{{user['name']}}</td>
+    <td>{{user['email']}}</td>
+    <td>{{user['address']['city']}}</td>
+    <td><b>//endPoint</b></td>
+    <td><b>//endPoint</b></td>
+    <td>{{user['quantityPosts']}}</td>
+    <td>{{user['quantityAlbums']}}</td>
+    <td>{{user['quantityPhotos']}}</td>
+  </tr>
+</table>

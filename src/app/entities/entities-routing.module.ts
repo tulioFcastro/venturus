@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
   notFoundRoute,
-  usersRoute
+  usersRoute,
+  userDetailsRoute
 } from './';
 
 const routes: Routes = [
   usersRoute,
-  notFoundRoute
+  notFoundRoute,
+  userDetailsRoute
 ];
 
 @NgModule({

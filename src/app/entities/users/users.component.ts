@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../../services';
+import { slideToRight } from '../../shared';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+  styleUrls: ['./users.component.scss'],
+  animations: [slideToRight()],
+  host: {'[@slideToRight]': ''}
 })
 export class UsersComponent implements OnInit {
 

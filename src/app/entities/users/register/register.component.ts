@@ -1,5 +1,6 @@
-import {Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {GeneralService} from '../../../services';
 
 @Component({
   selector: 'app-register',
@@ -9,22 +10,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   form: FormGroup;
-  entries = [];
-  selectedEntry: { [key: string]: any } = {
+  rideOnGroupOptions = [];
+  selectedRideOnGroup: { [key: string]: any } = {
     value: null,
     description: null
   };
-  options = [
-    {name: 'Sun', value: '1', checked: false},
-    {name: 'Mon', value: '2', checked: false},
-    {name: 'Tue', value: '3', checked: false},
-    {name: 'Wed', value: '4', checked: false},
-    {name: 'Thu', value: '5', checked: false},
-    {name: 'Fri', value: '6', checked: false},
-    {name: 'Sat', value: '7', checked: false}
-  ];
+  daysOfWeek;
   @Output() saveUserEmitter = new EventEmitter();
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private generalService: GeneralService) {
     this.form = fb.group({
       'username': [null, [Validators.required]],
       'name': [null, [Validators.required]],
@@ -34,27 +28,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.entries = [
-      {
-        description: 'Always',
-        id: 1
-      },
-      {
-        description: 'Sometimes',
-        id: 2
-      },
-      {
-        description: 'Never',
-        id: 3
-      }
-    ];
-
-    this.onSelectionChange(this.entries[0]);
+    this.fetchDaysOfWeek();
+    this.fetchRideOnGroup();
   }
 
   onSelectionChange(entry) {
     // clone the object for immutability
-    this.selectedEntry = Object.assign({}, this.selectedEntry, entry);
+    this.selectedRideOnGroup = Object.assign({}, this.selectedRideOnGroup, entry);
   }
 
   saveUser() {
@@ -76,5 +56,29 @@ export class RegisterComponent implements OnInit {
     this.form.controls['name'].setValue(null);
     this.form.controls['email'].setValue(null);
     this.form.controls['city'].setValue(null);
+  }
+
+  fetchDaysOfWeek() {
+    this.generalService.getDaysOfWeek().subscribe(
+      (data) => {
+        data.map(day => day.checked = false );
+        this.daysOfWeek = data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  fetchRideOnGroup() {
+    this.generalService.getRideOnGroupOptions().subscribe(
+      (data) => {
+        this.rideOnGroupOptions = data;
+        this.onSelectionChange(this.rideOnGroupOptions[0]);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

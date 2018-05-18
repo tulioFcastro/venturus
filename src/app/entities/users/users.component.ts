@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   }
 
   fetchUsers() {
-    this.generalService.fetchUsers().subscribe(
+    this.generalService.getUsers().subscribe(
       (users) => {
         this.users = users;
         this.fillUserObjects();
@@ -31,44 +31,45 @@ export class UsersComponent implements OnInit {
   }
 
   private fillPosts() {
-    this.generalService.getPosts().subscribe(
-      (posts) => {
-        this.users.map(user => {
-          user.posts = posts.filter(post => post['userId'] === user['id']);
-        });
-        this.fillAlbums();
-      }, (err) => {
-        console.log(err);
-      }
-    );
+    this.users.map(user => {
+      this.generalService.getPostsByUserId(user['id']).subscribe(
+        (data) => {
+          user.posts = data;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
+    this.fillAlbums();
   }
 
   private fillAlbums() {
-    this.generalService.getAlbums().subscribe(
-      (albums) => {
-        this.users.map(user => {
-          user.albums = albums.filter(post => post['userId'] === user['id']);
-        });
-        this.fillPhotos();
-      }, (err) => {
-        console.log(err);
-      }
-    );
+    this.users.map(user => {
+      this.generalService.getAlbumsByUserId(user['id']).subscribe(
+        (data) => {
+          user.albums = data;
+          this.fillPhotos(user);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
   }
 
-  private fillPhotos() {
-    this.generalService.getPhotos().subscribe(
-      (photos) => {
-        this.users.map(user => {
-          user.photos = [];
-          user['albums'].map(album => {
-            user.photos = [...user.photos, ...photos.filter(photo => photo['albumId'] === album.id)];
-          });
-        });
-      }, (err) => {
-        console.log(err);
-      }
-    );
+  private fillPhotos(user) {
+    user.photos = [];
+    user.albums.map(album => {
+      this.generalService.getPhotosByAlbumId(album['id']).subscribe(
+        (data) => {
+          user.photos = [...user.photos, ...data];
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    });
   }
 
   savedUser(user) {

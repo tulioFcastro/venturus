@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   notFoundRoute,
   usersRoute,
-  userDetailsRoute
+  userPostsRoute,
+  userAlbumsRoute
 } from './';
 
 const routes: Routes = [
   usersRoute,
   notFoundRoute,
-  userDetailsRoute
+  userPostsRoute,
+  userAlbumsRoute
 ];
 
 @NgModule({

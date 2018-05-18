@@ -16,7 +16,7 @@
   </tr>
   </thead>
 
-  <tr *ngFor="let user of users" routerLink="{{user.id}}">
+  <tr *ngFor="let user of users">
       <td>{{user['username']}}</td>
       <td>{{user['name']}}</td>
       <td><a href="mailto:{{user['email']}}">{{user['email']}}</a></td>
@@ -24,10 +24,12 @@
         <a *ngIf="user?.address?.geo" href="https://www.google.com/maps/search/?api=1&query={{user?.address?.geo?.lat}},{{user?.address?.geo?.lng}}" rel="noreferrer">{{user?.address?.city}}</a>
         <span *ngIf="!user?.address?.geo">{{user?.address?.city}}</span>
       </td>
-      <td><b>//endPoint</b></td>
-      <td><b>//endPoint</b></td>
-      <td>{{user['posts']?.length}}</td>
-      <td>{{user['albums']?.length}}</td>
+      <td>{{user['rideOnGroup']}}</td>
+      <td>
+        <span *ngFor="let day of user.daysOfWeek; let idx = index">{{day.value + (idx < user.daysOfWeek?.length - 1? ', ' : '')}}</span>
+      </td>
+      <td routerLink="/users/{{user.id}}/posts">{{user['posts']?.length}}</td>
+      <td routerLink="/users/{{user.id}}/albums">{{user['albums']?.length}}</td>
       <td>{{user['photos']?.length}}</td>
   </tr>
 </table>

@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
 
-import { UserDetailsComponent } from './details.component';
+import { UserPostsComponent } from './posts.component';
 
-export const userDetailsRoute: Route = {
-  path: 'users/:id',
-  component: UserDetailsComponent,
+export const userPostsRoute: Route = {
+  path: 'users/:userId/posts',
+  component: UserPostsComponent,
   data: {
     // authorities: ['CREATE_PUBLIC_CALL'],
     // pageTitle: 'global.menu.account.public-call',

@@ -13,7 +13,9 @@ export class UsersComponent implements OnInit {
 
   users;
   allUsers;
-  constructor(private generalService: GeneralService) { }
+
+  constructor(private generalService: GeneralService) {
+  }
 
   ngOnInit() {
     this.fetchUsers();
@@ -41,11 +43,14 @@ export class UsersComponent implements OnInit {
         (data) => {
           user.posts = data;
           this.fillAlbums(user);
+          this.fillUserRidersOnGroup(user);
+          this.fillUserDaysOfWeek(user);
         },
         (err) => {
           console.log(err);
         }
       );
+      // console.log(user);
     });
   }
 
@@ -73,6 +78,45 @@ export class UsersComponent implements OnInit {
         }
       );
     });
+  }
+
+  private fillUserRidersOnGroup(user) {
+    this.generalService.getUsersRideOnGroupByUserId(user.id).subscribe(
+      (data) => {
+        this.generalService.getUsersRideOnGroupById(data[0].rideOnGroupId).subscribe(
+          (rideOnGroup) => {
+            user.rideOnGroup = rideOnGroup[0].description;
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  private fillUserDaysOfWeek(user) {
+    user.daysOfWeek = [];
+    this.generalService.getUserDaysOfWeekByUserId(user.id).subscribe(
+      (data) => {
+        data.map(day => {
+          this.generalService.getUserDaysOfWeekById(day.dayOfWeekId).subscribe(
+            (daysOfWeek) => {
+              user.daysOfWeek = [...user.daysOfWeek, ...daysOfWeek];
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+        });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   savedUser(user) {

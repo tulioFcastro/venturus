@@ -7,8 +7,9 @@ import {
   NotFoundComponent,
   UsersComponent,
   RegisterComponent,
-  UserDetailsComponent,
-  SearchUserComponent
+  UserPostsComponent,
+  SearchUserComponent,
+  UserAlbumsComponent
 } from './';
 import { SharedModule } from '../shared/shared.module';
 
@@ -22,8 +23,9 @@ import { SharedModule } from '../shared/shared.module';
     UsersComponent,
     NotFoundComponent,
     RegisterComponent,
-    UserDetailsComponent,
-    SearchUserComponent
+    UserPostsComponent,
+    SearchUserComponent,
+    UserAlbumsComponent
   ]
 })
 export class EntitiesModule {

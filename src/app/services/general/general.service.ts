@@ -81,6 +81,36 @@ export class GeneralService {
       .pipe(catchError(this.handleError));
   }
 
+  getUsersRideOnGroupByUserId(userId) {
+    return this.http
+      .get<any[]>(this.fakeServiceUrl + `/usersRideOnGroup?userId=${userId}`)
+      .pipe(map(posts => posts), catchError(this.handleError));
+  }
+
+  getUsersRideOnGroupById(id) {
+    return this.http
+      .get<any[]>(this.fakeServiceUrl + `/rideOnGroup?id=${id}`)
+      .pipe(map(posts => posts), catchError(this.handleError));
+  }
+
+  getUserDaysOfWeekByUserId (userId) {
+    return this.http
+      .get<any[]>(this.fakeServiceUrl + `/userDaysOfWeek?userId=${userId}`)
+      .pipe(map(posts => posts), catchError(this.handleError));
+  }
+
+  getUserDaysOfWeekById(id) {
+    return this.http
+      .get<any[]>(this.fakeServiceUrl + `/daysOfWeek?id=${id}`)
+      .pipe(map(posts => posts), catchError(this.handleError));
+  }
+
+  getCommentsByPostId(postId) {
+    return this.http
+      .get<any[]>(this.baseUrl + `/comments?postId=${postId}`)
+      .pipe(map(posts => posts), catchError(this.handleError));
+  }
+
   private handleError(res: HttpErrorResponse) {
     console.error(res.error);
     return observableThrowError(res.error || 'Server error');

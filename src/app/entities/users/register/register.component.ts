@@ -45,7 +45,9 @@ export class RegisterComponent implements OnInit {
       address: {city: this.form.controls['city'].value},
       posts: [],
       albums: [],
-      photos: []
+      photos: [],
+      rideOnGroup: this.selectedRideOnGroup['description'],
+      daysOfWeek: this.daysOfWeek.filter(day => day.checked)
     };
     this.saveUserEmitter.emit(user);
     this.clearFields();
@@ -58,7 +60,7 @@ export class RegisterComponent implements OnInit {
     this.form.controls['city'].setValue(null);
   }
 
-  fetchDaysOfWeek() {
+  private fetchDaysOfWeek() {
     this.generalService.getDaysOfWeek().subscribe(
       (data) => {
         data.map(day => day.checked = false );
@@ -70,7 +72,7 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  fetchRideOnGroup() {
+  private fetchRideOnGroup() {
     this.generalService.getRideOnGroupOptions().subscribe(
       (data) => {
         this.rideOnGroupOptions = data;

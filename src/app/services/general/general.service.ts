@@ -62,11 +62,6 @@ export class GeneralService {
       .pipe(map(posts => posts), catchError(this.handleError));
   }
 
-  private handleError(res: HttpErrorResponse) {
-    console.error(res.error);
-    return observableThrowError(res.error || 'Server error');
-  }
-
   getDaysOfWeek() {
     return this.http
       .get<any[]>(this.fakeServiceUrl + `/daysofweek`)
@@ -77,6 +72,18 @@ export class GeneralService {
     return this.http
       .get<any[]>(this.fakeServiceUrl + `/rideongroup`)
       .pipe(map(posts => posts), catchError(this.handleError));
+  }
+
+  searchUser(term): Observable<any[]> {
+    console.log(`${this.baseUrl}/users?name=${term}`);
+    return this.http
+      .get<any[]>(`${this.baseUrl}/users?username=${term}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(res: HttpErrorResponse) {
+    console.error(res.error);
+    return observableThrowError(res.error || 'Server error');
   }
 
 }

@@ -12,6 +12,7 @@ import { slideToRight } from '../../shared';
 export class UsersComponent implements OnInit {
 
   users;
+  allUsers;
   constructor(private generalService: GeneralService) { }
 
   ngOnInit() {
@@ -22,6 +23,7 @@ export class UsersComponent implements OnInit {
     this.generalService.getUsers().subscribe(
       (users) => {
         this.users = users;
+        this.allUsers = users;
         this.fillUserObjects();
       }, (err) => {
         console.log(err);

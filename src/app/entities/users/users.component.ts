@@ -35,27 +35,25 @@ export class UsersComponent implements OnInit {
       this.generalService.getPostsByUserId(user['id']).subscribe(
         (data) => {
           user.posts = data;
+          this.fillAlbums(user);
         },
         (err) => {
           console.log(err);
         }
       );
     });
-    this.fillAlbums();
   }
 
-  private fillAlbums() {
-    this.users.map(user => {
-      this.generalService.getAlbumsByUserId(user['id']).subscribe(
-        (data) => {
-          user.albums = data;
-          this.fillPhotos(user);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    });
+  private fillAlbums(user) {
+    this.generalService.getAlbumsByUserId(user['id']).subscribe(
+      (data) => {
+        user.albums = data;
+        this.fillPhotos(user);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   private fillPhotos(user) {

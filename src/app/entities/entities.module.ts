@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EntitiesRoutingModule } from './entities-routing.module';
+import { EntitiesRoutingModule2 } from './entities-routing2.module';
 
 import {
   NotFoundComponent,
@@ -17,6 +18,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     EntitiesRoutingModule,
+    EntitiesRoutingModule2,
     SharedModule
   ],
   declarations: [

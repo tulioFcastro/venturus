@@ -8,15 +8,15 @@ import {
 } from './';
 
 const routes: Routes = [
-  usersRoute,
-  notFoundRoute,
-  // userPostsRoute,
-  // userAlbumsRoute
+  // usersRoute,
+  // notFoundRoute,
+  userPostsRoute,
+  userAlbumsRoute
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EntitiesRoutingModule {
+export class EntitiesRoutingModule2 {
 }

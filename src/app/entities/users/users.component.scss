@@ -3,8 +3,15 @@
     display: none;
   }
 }
+
 .table-hover:hover {
   .trash {
     display: inline;
   }
 }
+
+.float-end {
+  isplay: flex;
+  justify-content: flex-end;
+}
+

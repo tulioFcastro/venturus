@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { EntitiesModule } from './entities/entities.module';
-import { DashboardComponent } from './dashboard';
 import { AppRoutingModule } from './app-routing.module';
 import {
   GeneralService
@@ -14,8 +13,7 @@ import {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

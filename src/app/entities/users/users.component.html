@@ -17,7 +17,10 @@
     <td>{{user['username']}}</td>
     <td>{{user['name']}}</td>
     <td><a href="mailto:{{user['email']}}">{{user['email']}}</a></td>
-    <td>{{user?.address?.city}}</td>
+    <td>
+      <a *ngIf="user?.address?.geo" href="https://www.google.com/maps/search/?api=1&query={{user?.address?.geo?.lat}},{{user?.address?.geo?.lng}}" rel="noreferrer">{{user?.address?.city}}</a>
+      <span *ngIf="!user?.address?.geo">{{user?.address?.city}}</span>
+    </td>
     <td><b>//endPoint</b></td>
     <td><b>//endPoint</b></td>
     <td>{{user['posts']?.length}}</td>

@@ -2,7 +2,7 @@
   <input placeholder="Pesquisa de Usuários" #searchBox id="search-box" (keyup)="search(searchBox.value)"/>
   <div>
     <div *ngFor="let user of users | async"
-         routerLink="/users/{{user.id}}" class="search-result" >
+         routerLink="/users/{{user.id}}/posts" class="search-result" >
       {{user.username}}
     </div>
   </div>

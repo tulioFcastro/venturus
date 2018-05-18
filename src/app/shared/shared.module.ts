@@ -17,7 +17,8 @@ import { CollapseComponent } from './';
     HttpClientModule,
     CollapseComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFontAwesomeModule
   ],
   declarations: [
     CollapseComponent

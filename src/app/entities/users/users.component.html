@@ -1,5 +1,5 @@
 <div style="display: flex; justify-content: flex-end;">
-<app-search-user [allUsers]="allUsers"></app-search-user>
+  <app-search-user [allUsers]="allUsers"></app-search-user>
 </div>
 <table>
   <thead>
@@ -13,24 +13,32 @@
     <th>Posts</th>
     <th>Albums</th>
     <th>Photos</th>
+    <th>Remove</th>
   </tr>
   </thead>
 
-  <tr *ngFor="let user of users">
-      <td>{{user['username']}}</td>
-      <td>{{user['name']}}</td>
-      <td><a href="mailto:{{user['email']}}">{{user['email']}}</a></td>
-      <td>
-        <a *ngIf="user?.address?.geo" href="https://www.google.com/maps/search/?api=1&query={{user?.address?.geo?.lat}},{{user?.address?.geo?.lng}}" rel="noreferrer">{{user?.address?.city}}</a>
-        <span *ngIf="!user?.address?.geo">{{user?.address?.city}}</span>
-      </td>
-      <td>{{user['rideOnGroup']}}</td>
-      <td>
-        <span *ngFor="let day of user.daysOfWeek; let idx = index">{{day.value + (idx < user.daysOfWeek?.length - 1? ', ' : '')}}</span>
-      </td>
-      <td routerLink="/users/{{user.id}}/posts">{{user['posts']?.length}}</td>
-      <td routerLink="/users/{{user.id}}/albums">{{user['albums']?.length}}</td>
-      <td>{{user['photos']?.length}}</td>
+  <tr *ngFor="let user of users; let idx = index" class="table-hover">
+    <td>{{user['username']}}</td>
+    <td>{{user['name']}}</td>
+    <td><a href="mailto:{{user['email']}}">{{user['email']}}</a></td>
+    <td>
+      <a *ngIf="user?.address?.geo"
+         href="https://www.google.com/maps/search/?api=1&query={{user?.address?.geo?.lat}},{{user?.address?.geo?.lng}}"
+         rel="noreferrer">{{user?.address?.city}}</a>
+      <span *ngIf="!user?.address?.geo">{{user?.address?.city}}</span>
+    </td>
+    <td>{{user['rideOnGroup']}}</td>
+    <td>
+      <span *ngFor="let day of user.daysOfWeek; let idx = index">{{day.value + (idx < user.daysOfWeek?.length - 1? ', ' : '')}}</span>
+    </td>
+    <td routerLink="/users/{{user.id}}/posts">{{user['posts']?.length}}</td>
+    <td routerLink="/users/{{user.id}}/albums">{{user['albums']?.length}}</td>
+    <td>{{user['photos']?.length}}</td>
+    <td>
+      <div class="trash" (click)="removeUser(idx)">
+        <fa name="trash"></fa>
+      </div>
+    </td>
   </tr>
 </table>
 

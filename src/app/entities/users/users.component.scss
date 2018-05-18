@@ -1,0 +1,10 @@
+.table-hover {
+  .trash {
+    display: none;
+  }
+}
+.table-hover:hover {
+  .trash {
+    display: inline;
+  }
+}

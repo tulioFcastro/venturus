@@ -123,4 +123,7 @@ export class UsersComponent implements OnInit {
     this.users.push(user);
   }
 
+  removeUser(index) {
+    this.users.splice(index, 1);
+  }
 }

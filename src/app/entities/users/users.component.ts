@@ -71,4 +71,8 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  savedUser(user) {
+    this.users.push(user);
+  }
+
 }

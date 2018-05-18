@@ -1,31 +1,29 @@
-<div>
-  <table>
-    <thead>
-    <tr>
-      <th>Username</th>
-      <th>Name</th>
-      <th>E-mail</th>
-      <th>City</th>
-      <th>Ride in group</th>
-      <th>Day of the week</th>
-      <th>Posts</th>
-      <th>Albums</th>
-      <th>Photos</th>
-    </tr>
-    </thead>
+<table>
+  <thead>
+  <tr>
+    <th>Username</th>
+    <th>Name</th>
+    <th>E-mail</th>
+    <th>City</th>
+    <th>Ride in group</th>
+    <th>Day of the week</th>
+    <th>Posts</th>
+    <th>Albums</th>
+    <th>Photos</th>
+  </tr>
+  </thead>
 
-    <tr *ngFor="let user of users">
-      <td>{{user['username']}}</td>
-      <td>{{user['name']}}</td>
-      <td><a href="mailto:{{user['email']}}>">{{user['email']}}</a></td>
-      <td>{{user['address']['city']}}</td>
-      <td><b>//endPoint</b></td>
-      <td><b>//endPoint</b></td>
-      <td>{{user['posts']?.length}}</td>
-      <td>{{user['albums']?.length}}</td>
-      <td>{{user['photos']?.length}}</td>
-    </tr>
-  </table>
+  <tr *ngFor="let user of users">
+    <td>{{user['username']}}</td>
+    <td>{{user['name']}}</td>
+    <td><a href="mailto:{{user['email']}}>">{{user['email']}}</a></td>
+    <td>{{user?.address?.city}}</td>
+    <td><b>//endPoint</b></td>
+    <td><b>//endPoint</b></td>
+    <td>{{user['posts']?.length}}</td>
+    <td>{{user['albums']?.length}}</td>
+    <td>{{user['photos']?.length}}</td>
+  </tr>
+</table>
 
-  <app-register></app-register>
-</div>
+<app-register (saveUserEmitter)="savedUser($event)"></app-register>

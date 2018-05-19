@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CollapseComponent } from './';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   imports: [
@@ -19,12 +18,10 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     FormsModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
-    CollapseComponent,
-    BreadcrumbComponent
+    CollapseComponent
   ],
   declarations: [
-    CollapseComponent,
-    BreadcrumbComponent
+    CollapseComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

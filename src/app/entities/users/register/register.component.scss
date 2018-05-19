@@ -1,3 +1,37 @@
+@import '../../../../sass/mixins/default';
+@import '../../../../sass/variables';
+
+@include container-header();
+
+.container-header {
+  padding-top: 5%;
+  .hr {
+    margin: auto 0 auto 5%;
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  .component {
+    width: 100%;
+    .title {
+      color: $venturus-green;
+    }
+    .description {
+      display: flex;
+      padding-top: 5%;
+      i {
+        color: $venturus-green;
+        margin: auto;
+      }
+      .text {
+        padding: 0 8px;
+      }
+    }
+  }
+}
+
 .form-style-1 li {
   padding: 0;
   display: block;

@@ -1,23 +1,7 @@
 @import '../../../sass/variables';
+@import '../../../sass/mixins/default';
 
-.container-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 0;
-  margin-top: -10px;
-  .title {
-    margin: auto 0;
-    span {
-      font-size: 20px;
-    }
-  }
-  .hr {
-    width: 100%;
-    margin: auto 5%;
-    background-color: $gray-light;
-    height: 2px;
-  }
-}
+@include container-header();
 
 table{
   width: 100%;

@@ -3,8 +3,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { CollapseComponent } from './';
-import { NavbarComponent } from './navbar/navbar.component';
+import {
+  CollapseComponent,
+  InfoDivComponent,
+  NavbarComponent
+} from './';
 
 @NgModule({
   imports: [
@@ -20,10 +23,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     CollapseComponent,
+    InfoDivComponent,
     NavbarComponent
   ],
   declarations: [
     CollapseComponent,
+    InfoDivComponent,
     NavbarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

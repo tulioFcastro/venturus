@@ -10,8 +10,8 @@ import {
 const routes: Routes = [
   usersRoute,
   notFoundRoute,
-  // userPostsRoute,
-  // userAlbumsRoute
+  userPostsRoute,
+  userAlbumsRoute
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { CollapseComponent } from './';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   imports: [
@@ -18,10 +19,12 @@ import { CollapseComponent } from './';
     FormsModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
-    CollapseComponent
+    CollapseComponent,
+    NavbarComponent
   ],
   declarations: [
-    CollapseComponent
+    CollapseComponent,
+    NavbarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

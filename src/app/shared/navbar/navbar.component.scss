@@ -1,0 +1,58 @@
+@import '../../../sass/mixins/default';
+@import '../../../sass/variables';
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0 15px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+li a {
+  display: block;
+  margin: auto 10px;
+}
+
+.flex-end {
+  float: right;
+  display: flex;
+  margin: 5px 0;
+  div {
+    display: flex;
+    margin: auto;
+    a {
+      color: #000000;
+    }
+    i {
+      margin: auto;
+    }
+  }
+  .circle {
+    border: 1px black solid;
+    border-radius: 50%;
+    padding: 7px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
+.icon {
+  display: flex;
+  div {
+    background-color: $venturus-green;
+    color: $white;
+    height: fit-content;
+    border-radius: 16%;
+    margin: auto;
+    i {
+      padding: 7px;
+      font-size: 1.3em;
+    }
+  }
+  h3 {
+    padding-left: 10px;
+  }
+}

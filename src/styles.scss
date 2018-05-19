@@ -3,6 +3,7 @@
 
 body {
   margin: 0;
+  font-family: Arial;
 }
 
 ::-webkit-scrollbar {
@@ -31,4 +32,5 @@ input:focus {
 input {
   border: 1px solid lightgray;
   border-radius: 5%;
+  height: 20px;
 }

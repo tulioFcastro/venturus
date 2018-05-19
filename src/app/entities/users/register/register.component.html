@@ -33,57 +33,54 @@
   </div>
 </div>
 
-<form [formGroup]="form" (ngSubmit)="saveUser()">
-  <ul class="form-style-1">
-    <li>
-      <label>Username<span class="required">*</span></label>
-      <input type="text" [formControl]="form.controls['username']" required name="field1" class="field-long"/>
-    </li>
-
-    <li>
-      <label>Name<span class="required">*</span></label>
-      <input type="text" [formControl]="form.controls['name']" required name="field3" class="field-long"/>
-    </li>
-
-    <li>
-      <label>Email<span class="required">*</span></label>
-      <input type="email" [formControl]="form.controls['email']" required name="field3" class="field-long"/>
-    </li>
-
-    <li>
-      <label>City</label>
-      <input type="text" [formControl]="form.controls['city']" name="field3" class="field-long"/>
-    </li>
-
-    <li>
-      <label>Ride on group?</label>
-      <div style="display: flex; justify-content: space-between">
-        <div *ngFor="let entry of rideOnGroupOptions; let idx = index">
-          <input type="radio" name="radiogroup" (change)="onSelectionChange(entry)" [checked]="(idx === 0)"
-                 [value]="entry.id">
-          <span>{{entry.description}}</span>
-        </div>
+<form [formGroup]="form" (submit)="saveUser()">
+  <div class="form">
+    <div class="first-div">
+      <div class="input-form">
+        <label>Username<span *ngIf="form.controls['username'].invalid" class="required">*</span></label>
+        <input type="text" [formControl]="form.controls['username']" required name="username"/>
       </div>
-    </li>
 
-    <li>
-      <label>Days of week</label>
-      <div style="display: flex; justify-content: space-between">
-        <div *ngFor="let option of daysOfWeek">
-          <label>
-            <input type="checkbox"
-                   name="options"
-                   value="{{option.value}}"
-                   (change)="option.checked = !option.checked"/>
-            {{option.value}}
+      <div class="input-form">
+        <label>Name<span *ngIf="form.controls['name'].invalid" class="required">*</span></label>
+        <input type="text" [formControl]="form.controls['name']" required name="name"/>
+      </div>
+
+      <div class="input-form">
+        <label>Email<span *ngIf="form.controls['email'].invalid" class="required">*</span></label>
+        <input type="email" [formControl]="form.controls['email']" required name="email"/>
+      </div>
+    </div>
+    <div class="second-div">
+      <div class="input-form">
+        <div class="optional-div"><label>City</label><span class="text">optional</span></div>
+        <input type="text" [formControl]="form.controls['city']" name="city"/>
+      </div>
+
+      <div class="input-form">
+        <label>Ride on group?</label>
+        <div class="radio-button">
+          <label class="container" *ngFor="let entry of rideOnGroupOptions; let idx = index">
+            <span>{{entry.description}}</span>
+            <input type="radio" name="radiogroup" (change)="onSelectionChange(entry)" [checked]="(idx === 0)"
+                   [value]="entry.id">
+            <span class="checkmark"></span>
           </label>
         </div>
       </div>
-    </li>
 
-    <li>
-      <input type="submit" [disabled]="form.invalid" value="Save"/>
-      <input type="button" (click)="clearFields()" value="Discard"/>
-    </li>
-  </ul>
+      <div class="input-form">
+        <label>Days of week</label>
+        <div class="checkbox">
+          <label class="container" *ngFor="let option of daysOfWeek">
+            <span class="text">{{option.value}}</span>
+            <input type="checkbox" name="options" (change)="option.checked = !option.checked" value="{{option.value}}">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="submit" class="submit-button" [disabled]="form.invalid" value="Save"/>
+  <input type="button" class="discard-button" (click)="clearFields()" value="Discard"/>
 </form>

@@ -41,6 +41,9 @@ export class UserPostsComponent implements OnInit {
   private fillPosts() {
     this.generalService.getPostsByUserId(this.user['id']).subscribe(
       (data) => {
+        data.map(post => {
+          post['collapse'] = true;
+        });
         this.user.posts = data;
         this.fillComment();
       },
@@ -52,16 +55,25 @@ export class UserPostsComponent implements OnInit {
 
   private fillComment() {
     this.user.posts.map(post => {
-      this.user.comments = [];
+      post['comments'] = [];
       this.generalService.getCommentsByPostId(post.id).subscribe(
         (data) => {
-          this.user.comments = [...this.user.comments, ...data];
+          post['comments'] = [...post['comments'], ...data];
         },
         (err) => {
           console.log(err);
         }
       );
     });
+  }
+
+  closeCollapsedDivs(actualPost) {
+    this.user.posts
+      .filter((post) => post.collapse === false && post.id !== actualPost.id)
+      .map((u) => {
+        u.collapse = true;
+      });
+    actualPost.collapse = !actualPost.collapse;
   }
 
 }

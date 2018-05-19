@@ -1,3 +1,33 @@
-<p>
-  Posts works!
-</p>
+<div class="container-header">
+  <div class="title"><span>Posts - {{user?.name}}</span></div>
+  <div class="hr"></div>
+</div>
+
+<div *ngIf="user?.posts">
+  <div *ngFor="let post of user?.posts" class="card" aria-controls="collapseCard">
+    <div class="div-post" (click)="closeCollapsedDivs(post)">
+      <div class="title">
+        <span><b>Title</b>: {{post?.title}}</span>
+      </div>
+      <app-collapse [collapsed]="post?.collapse">
+        <div class="body">
+          <span><b>Body</b>: {{post?.body}}</span>
+          <br />
+          <div class="comments">
+            <span>
+              <b>Comments</b>:
+            </span>
+            <br />
+            <div *ngFor="let comment of post.comments">
+              <div class="comment">
+                <span><b>Name</b>: {{comment.name}}</span>
+                <span><b>Email</b>: {{comment.email}}</span>
+                <span><b>Body</b>: {{comment.body}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-collapse>
+    </div>
+  </div>
+</div>

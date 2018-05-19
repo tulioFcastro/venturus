@@ -1,0 +1,48 @@
+@import '../../../../sass/mixins/default';
+@import '../../../../sass/variables';
+
+@include container-header();
+
+.div-album {
+  background-color: $gray-light;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  margin-top: 5px;
+
+  .title {
+    min-height: 40px;
+    display: flex;
+    cursor: pointer;
+    span {
+      padding-top: 11px;
+      padding-left: 10px;
+    }
+  }
+  .body {
+    display: inline-grid;
+    width: 100%;
+    .photos {
+      display: inline-grid;
+      width: 100%;
+      .photo {
+        border: 1px dotted $black;
+        margin: 1% 0;
+        padding: 5px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        img {
+          padding: 7px;
+        }
+      }
+    }
+  }
+}
+
+.container-header {
+  .hr {
+    margin: auto 0 auto 5%;
+  }
+}

@@ -38,6 +38,9 @@ export class UserAlbumsComponent implements OnInit {
   private fillAlbums() {
     this.generalService.getAlbumsByUserId(this.user['id']).subscribe(
       (data) => {
+        data.map(album => {
+          album['collapse'] = true;
+        });
         this.user.albums = data;
         this.fillPhotos();
       },
@@ -49,16 +52,25 @@ export class UserAlbumsComponent implements OnInit {
 
   private fillPhotos() {
     this.user.albums.map(album => {
-      this.user.photos = [];
+      album['photos'] = [];
       this.generalService.getPhotosByAlbumId(album.id).subscribe(
         (data) => {
-          this.user.photos = [...this.user.photos, ...data];
+          album['photos'] = [...album['photos'], ...data];
         },
         (err) => {
           console.log(err);
         }
       );
     });
+  }
+
+  closeCollapsedDivs(actualAlbum) {
+    this.user.albums
+      .filter((album) => album.collapse === false && album.id !== actualAlbum.id)
+      .map((u) => {
+        u.collapse = true;
+      });
+    actualAlbum.collapse = !actualAlbum.collapse;
   }
 
 }

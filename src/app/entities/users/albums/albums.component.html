@@ -1,3 +1,57 @@
-<p>
-  albums works!
-</p>
+<!--<div class="container-header">-->
+  <!--<div class="title"><span>Albums - {{user?.name}}</span></div>-->
+  <!--<div class="hr"></div>-->
+<!--</div>-->
+
+<!--<div *ngIf="user?.albums">-->
+  <!--<div *ngFor="let album of user?.albums" class="card" aria-controls="collapseCard">-->
+    <!--<div class="div-album" (click)="closeCollapsedDivs(album)">-->
+      <!--<div class="title">-->
+        <!--<span><b>Title</b>: {{album?.title}}</span>-->
+      <!--</div>-->
+      <!--<app-collapse [collapsed]="album?.collapse">-->
+        <!--<div class="body">-->
+          <!--<div class="photos">-->
+            <!--<span>-->
+              <!--<b>Photos</b>:-->
+            <!--</span>-->
+            <!--<br />-->
+            <!--<div *ngFor="let photo of album.photos">-->
+              <!--<div class="comment">-->
+                <!--<span><b>Title</b>: {{photo.title}}</span>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</app-collapse>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class="container-header">
+  <div class="title"><span>Albums - {{user?.name}}</span></div>
+  <div class="hr"></div>
+</div>
+
+<div *ngIf="user?.albums">
+  <div *ngFor="let album of user?.albums" class="card" aria-controls="collapseCard">
+    <div class="div-album" (click)="closeCollapsedDivs(album)">
+      <div class="title">
+        <span><b>Title</b>: {{album?.title}}</span>
+      </div>
+      <app-collapse [collapsed]="album?.collapse">
+        <div class="body">
+          <div class="photos">
+            <span>
+              <b>Photos</b>:
+            </span>
+            <br />
+            <div class="photo">
+              <img *ngFor="let photo of album.photos" src="{{photo.thumbnailUrl}}" />
+            </div>
+          </div>
+        </div>
+      </app-collapse>
+    </div>
+  </div>
+</div>

@@ -126,4 +126,29 @@ export class UsersComponent implements OnInit {
   removeUser(index) {
     this.users.splice(index, 1);
   }
+
+  getUserDaysOfWeek(daysOfWeek) {
+    if (daysOfWeek.length === 2) {
+      if ((daysOfWeek[0].id === 1 && daysOfWeek[1].id === 7)
+        || (daysOfWeek[0].id === 7 && daysOfWeek[1].id === 1)) {
+        return 'Weekends';
+      }
+    } else if (daysOfWeek.length === 5) {
+      let reduce = daysOfWeek.reduce((a, b) => {
+        return {id: a.id + b.id};
+      });
+      console.log(reduce);
+      if (reduce.id === 20) {
+        return 'Week days';
+      }
+    } else if (daysOfWeek.length === 7) {
+      return 'Every day';
+    }
+    let resp = '';
+    daysOfWeek.map(day => {
+      resp += day['value'] + ', ';
+    });
+    return resp.slice(0, resp.length - 2);
+  }
+
 }

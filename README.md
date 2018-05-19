@@ -1,6 +1,9 @@
 # Venturus
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3 and developed with node version 8.11.1 and npm version 6.0.1.
+
+## Installing dependencies
+Run `npm install` to install project dependencies
 
 ## Development server
 

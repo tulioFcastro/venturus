@@ -36,7 +36,7 @@
     </td>
     <td class="adjust-padding">{{user['rideOnGroup']}}</td>
     <td class="adjust-padding">
-      <span *ngFor="let day of user.daysOfWeek; let idx = index">{{day.value + (idx < user.daysOfWeek?.length - 1? ', ' : '')}}</span>
+      <span *ngIf="user.daysOfWeek && user.daysOfWeek.length">{{getUserDaysOfWeek(user.daysOfWeek)}}</span>
     </td>
     <td class="adjust-padding router-link venturus-green" routerLink="/users/{{user.id}}/posts">{{user['posts']?.length}}</td>
     <td class="adjust-padding router-link venturus-green" routerLink="/users/{{user.id}}/albums">{{user['albums']?.length}}</td>

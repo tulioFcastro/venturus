@@ -1,17 +1,70 @@
-.table-hover {
-  .trash {
-    display: none;
+@import '../../../sass/variables';
+
+.container-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  margin-top: -10px;
+  .title {
+    margin: auto 0;
+    span {
+      font-size: 20px;
+    }
+  }
+  .hr {
+    width: 100%;
+    margin: auto 5%;
+    background-color: $gray-light;
+    height: 2px;
   }
 }
 
-.table-hover:hover {
-  .trash {
-    display: inline;
+table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  tr:nth-child(even) {
+    background-color: #f8f8f8;
+  }
+
+  thead {
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+    .tr {
+      height: 40px;
+    }
+  }
+
+  .table-hover {
+    height: 40px;
+    .trash {
+      color: $venturus-green;
+      cursor: pointer;
+      display: none;
+    }
+  }
+
+  .table-hover:hover {
+    background-color: $gray-light;
+    .trash {
+      display: inline;
+    }
   }
 }
 
-.float-end {
-  isplay: flex;
-  justify-content: flex-end;
+.adjust-padding {
+  padding: 0 10px;
 }
 
+.th-trash {
+  width: 17px;
+}
+
+.router-link {
+  cursor: pointer;
+}
+
+.venturus-green {
+  color: $venturus-green;
+}

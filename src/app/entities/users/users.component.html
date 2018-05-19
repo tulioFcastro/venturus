@@ -1,45 +1,53 @@
-<div class="float-end">
+<div class="container-header">
+  <div class="title"><span>Users</span></div>
+  <div class="hr"></div>
   <app-search-user [allUsers]="allUsers"></app-search-user>
 </div>
 <table>
   <thead>
-  <tr>
-    <th>Username</th>
-    <th>Name</th>
-    <th>E-mail</th>
-    <th>City</th>
-    <th>Ride in group</th>
-    <th>Day of the week</th>
-    <th>Posts</th>
-    <th>Albums</th>
-    <th>Photos</th>
-    <th>Remove</th>
+  <tr class="tr">
+    <th class="adjust-padding" align="left">Username</th>
+    <th class="adjust-padding" align="left">Name</th>
+    <th class="adjust-padding" align="left">E-mail</th>
+    <th class="adjust-padding" align="left">City</th>
+    <th class="adjust-padding" align="left">Ride in group</th>
+    <th class="adjust-padding" align="left">Day of the week</th>
+    <th class="adjust-padding" align="left">Posts</th>
+    <th class="adjust-padding" align="left">Albums</th>
+    <th class="adjust-padding" align="left">Photos</th>
+    <th class="th-trash"></th>
   </tr>
   </thead>
 
+  <tbody>
   <tr *ngFor="let user of users; let idx = index" class="table-hover">
-    <td>{{user['username']}}</td>
-    <td>{{user['name']}}</td>
-    <td><a href="mailto:{{user['email']}}">{{user['email']}}</a></td>
-    <td>
+    <td class="adjust-padding">{{user['username']}}</td>
+    <td class="adjust-padding">{{user['name']}}</td>
+    <td class="adjust-padding">
+      <a class="venturus-green" href="mailto:{{user['email']}}">{{user['email']}}</a>
+    </td>
+    <td class="adjust-padding">
       <a *ngIf="user?.address?.geo"
+         class="venturus-green"
+         target="_blank"
          href="https://www.google.com/maps/search/?api=1&query={{user?.address?.geo?.lat}},{{user?.address?.geo?.lng}}"
          rel="noreferrer">{{user?.address?.city}}</a>
       <span *ngIf="!user?.address?.geo">{{user?.address?.city}}</span>
     </td>
-    <td>{{user['rideOnGroup']}}</td>
-    <td>
+    <td class="adjust-padding">{{user['rideOnGroup']}}</td>
+    <td class="adjust-padding">
       <span *ngFor="let day of user.daysOfWeek; let idx = index">{{day.value + (idx < user.daysOfWeek?.length - 1? ', ' : '')}}</span>
     </td>
-    <td routerLink="/users/{{user.id}}/posts">{{user['posts']?.length}}</td>
-    <td routerLink="/users/{{user.id}}/albums">{{user['albums']?.length}}</td>
-    <td>{{user['photos']?.length}}</td>
+    <td class="adjust-padding router-link venturus-green" routerLink="/users/{{user.id}}/posts">{{user['posts']?.length}}</td>
+    <td class="adjust-padding router-link venturus-green" routerLink="/users/{{user.id}}/albums">{{user['albums']?.length}}</td>
+    <td class="adjust-padding">{{user['photos']?.length}}</td>
     <td>
       <div class="trash" (click)="removeUser(idx)">
         <fa name="trash"></fa>
       </div>
     </td>
   </tr>
+  </tbody>
 </table>
 
 <app-register (saveUserEmitter)="savedUser($event)"></app-register>

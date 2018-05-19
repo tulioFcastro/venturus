@@ -1,6 +1,6 @@
 <div>
-  <input placeholder="Pesquisa de Usuários" #searchBox id="search-box" (keyup)="search(searchBox.value)"/>
-  <div>
+  <input class="icon" placeholder="&#61442; Filter table content" #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div class="user-searched">
     <div *ngFor="let user of users | async"
          routerLink="/users/{{user.id}}/posts" class="search-result" >
       {{user.username}}
